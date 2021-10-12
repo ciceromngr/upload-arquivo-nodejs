@@ -16,7 +16,7 @@ router.post('/post', multer(multerConfig).single('file') , async (req, res) => {
             name,
             key,
             size,
-            url: 'path'
+            url: path
         })
     
         await uploadingRespository.save(postsUploading)
