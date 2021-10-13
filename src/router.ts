@@ -19,9 +19,6 @@ router.post('/post', multer(multerConfig).single('file') , async (req, res) => {
         await uploadingRespository.save(postsUploading)
         return res.json(postsUploading)
     }
-    
-    res.writeHead(200, { 'content-type': 'video/*' })
-    res.end(`<video src="${req.file.location}" controls></video>`);
     return res.json({ message: 'error' })
 
 })
