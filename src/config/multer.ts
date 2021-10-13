@@ -47,14 +47,7 @@ export default {
             "image/jpeg",
             "image/pjpeg",
             "image/png",
-            "image/gif",
-            "video/x-ms-wmv",
-            "video/x-msvideo",
-            "video/quicktime",
-            "video/3gpp",
-            "video/MP2T",
-            "video/mp4",
-            "video/x-flv"
+            "image/gif"
         ]
 
         if (allowedMimes.includes(file.mimetype)) {
