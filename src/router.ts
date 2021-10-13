@@ -10,6 +10,13 @@ import { UploadingRepository } from "./repository/UploadingRepository";
 
 const router = Router()
 
+router.get('/post', async (req, res) => {
+    const uploadingRespository = getCustomRepository(UploadingRepository)
+    const date = await uploadingRespository.find()
+    return res.json(date)
+
+})
+
 router.post('/post', multer(multerConfig).single('file') , async (req, res) => {
     const uploadingRespository = getCustomRepository(UploadingRepository)
     if(req.file.location !== undefined) {
