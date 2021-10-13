@@ -7,22 +7,21 @@ const router = Router()
 
 router.post('/post', multer(multerConfig).single('file') , async (req, res) => {
     const uploadingRespository = getCustomRepository(UploadingRepository)
-
-    const { originalname: name, filename: key, size, path} = req.file
-
-    if(path !== undefined) {
-
+    if(req.file.location !== undefined) {
+        const { originalname: name, filename: key, size, location: url} = req.file
         const postsUploading = uploadingRespository.create({
             name,
             key,
             size,
-            url: path
+            url
         })
-    
+        
         await uploadingRespository.save(postsUploading)
         return res.json(postsUploading)
     }
-
+    
+    res.writeHead(200, { 'content-type': 'video/*' })
+    res.end(`<video src="${req.file.location}" controls></video>`);
     return res.json({ message: 'error' })
 
 })

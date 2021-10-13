@@ -4,6 +4,7 @@ import crypto from 'crypto'
 import { Request } from "express"
 import multerS3 from 'multer-s3'
 import aws from 'aws-sdk'
+import shortid from 'shortid'
 
 const storageType = {
     local: multer.diskStorage({
@@ -29,14 +30,15 @@ const storageType = {
             cb(null, { fieldName: file.fieldname });
         },
         key: (req, file, cb) => {
-            cb(null, Date.now().toString() + '-' + file.originalname)
+            file.filename = shortid.generate() + '-' + file.originalname
+            cb(null, file.filename)
         }
     })
 }
 
 export default {
     dest: path.resolve(__dirname, '..', '..', 'tmp', 'upload'),
-    storage: storageType['s3'],
+    storage: storageType[process.env.MULTER_STORAGE],
     limits: {
 
     },
