@@ -4,7 +4,7 @@
   "main": "index.js",
   "repository": "https://github.com/ciceromngr/upload-arquivo-nodejs.git",
   "author": "ciceromngr <cicerotransformice@gmail.com>",
-  "license": "MIT",
+  "license": "MIT", 
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
     "start": "ts-node-dev src/index.ts",
